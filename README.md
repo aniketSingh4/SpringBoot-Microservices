@@ -11,17 +11,8 @@ Architecture Components:
 Tech Stack: 
 Java 17 or higher, Spring Boot 3+, Spring Cloud Netflix Eureka, Spring Cloud OpenFeign, Maven (Multi-Module Structure), Lombok, Spring Web.
 
-Project Structure:- 
-
-spring-microservices-demo/
-│
-├── service-registry/ -> Eureka Server
-├── customer-service/ -> Customer Microservice
-├── product-service/ -> Product Microservice (Feign Client)
-└── pom.xml -> Parent POM (manages common dependencies and modules)
-
-
 How It Works:
+
 Start Eureka Server:
 Run the service-registry module. It starts on port 8761 and provides a dashboard at http://localhost:8761
 
