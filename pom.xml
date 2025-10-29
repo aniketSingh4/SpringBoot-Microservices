@@ -1,0 +1,14 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.springboot</groupId>
+  <artifactId>springboot_microservices</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Springboot Microservices</name>
+  <description>In this maven project, we develop microservies and enable communication between microservices using eureka server and open feign.</description>
+  <modules>
+  	<module>EurekaServer</module>
+  	<module>CustomerServices</module>
+  	<module>ProductServices</module>
+  </modules>
+</project>
