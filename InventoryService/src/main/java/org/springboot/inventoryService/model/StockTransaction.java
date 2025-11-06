@@ -14,7 +14,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Stock-Transaction")
+@Table(name = "Stock_Transaction")
 public class StockTransaction 
 {
 	@Id

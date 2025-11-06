@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InventoryService 
 {
-	public void addInventoryItem(InventoryItem item);
+	public String addInventoryItem(InventoryItem item);
 	public InventoryItem getInventoryById(UUID id);
 	public InventoryItem getInventoryItemBySKUId(String sku_id);
 	public InventoryItem getInventoryItemByName(String name);
