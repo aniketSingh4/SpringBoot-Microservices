@@ -48,7 +48,7 @@ public class InventoryItemController
 		return inventorySer.getInventoryItemByName(name);
 	}
 	
-	@PostMapping()
+	@PostMapping("/add")
 	public String addInventoryItem(@RequestBody ProductRequest item)
 	{
 		return inventorySer.addProductInventoryItem(item);

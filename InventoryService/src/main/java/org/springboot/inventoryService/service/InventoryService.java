@@ -12,12 +12,15 @@ public interface InventoryService
 {
 	//public String addInventoryItem(InventoryItem item);
 	public String addProductInventoryItem(ProductRequest product);
+	
 	public InventoryItem getInventoryById(UUID id);
 	public InventoryItem getInventoryItemBySKUId(String sku_id);
 	public InventoryItem getInventoryItemByName(String name);
 	public List<InventoryItem> getAllInventory();
+	
 	public InventoryItem updateInventoryItem(UUID id, ProductRequest item);
 	public InventoryItem updateInventory(ProductRequest item);
+	
 	public InventoryItem deleteInventoryById(UUID id);
 	public InventoryItem deleteInventory(ProductRequest item);
 
