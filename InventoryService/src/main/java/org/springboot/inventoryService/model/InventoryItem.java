@@ -48,8 +48,7 @@ public class InventoryItem
 	
 	private LocalDateTime updated_at;
 	
-	@Enumerated(EnumType.STRING)
-	private Enum Status;
+	private String status;
 	
 	@ManyToOne
 	@JoinColumn(name = "supplier_id")
@@ -63,7 +62,7 @@ public class InventoryItem
 	//Parameterized Constructor and Non-Parameterized Constructor
 	public InventoryItem(UUID id, String sku, String name, String description, String category, String unit_of_measure,
 			double cost_prize, double selling_prize, int quantity_in_stock, int reorder_level, LocalDateTime created_at,
-			LocalDateTime updated_at, Enum status, Supplier supplier, Warehouse warehouse) 
+			LocalDateTime updated_at, String status, Supplier supplier, Warehouse warehouse) 
 	{
 		super();
 		this.id = id;
@@ -78,7 +77,7 @@ public class InventoryItem
 		this.reorder_level = reorder_level;
 		this.created_at = created_at;
 		this.updated_at = updated_at;
-		Status = status;
+		this.status = status;
 		this.supplier = supplier;
 		this.warehouse = warehouse;
 	}
@@ -165,11 +164,11 @@ public class InventoryItem
 	public void setUpdated_at(LocalDateTime updated_at) {
 		this.updated_at = updated_at;
 	}
-	public Enum getStatus() {
-		return Status;
+	public String getStatus() {
+		return status;
 	}
-	public void setStatus(Enum status) {
-		Status = status;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 

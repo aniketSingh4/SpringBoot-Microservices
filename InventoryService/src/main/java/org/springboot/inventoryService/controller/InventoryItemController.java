@@ -3,6 +3,7 @@ package org.springboot.inventoryService.controller;
 import java.util.List;
 import java.util.UUID;
 
+import org.springboot.inventoryService.dto.ProductRequest;
 import org.springboot.inventoryService.model.InventoryItem;
 import org.springboot.inventoryService.serviceImpl.InventoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,20 +49,19 @@ public class InventoryItemController
 	}
 	
 	@PostMapping()
-	public void addInventoryItem(@RequestBody InventoryItem item)
+	public String addInventoryItem(@RequestBody ProductRequest item)
 	{
-		inventorySer.addInventoryItem(item);
-		System.out.println("Inventory Item Added.");
+		return inventorySer.addProductInventoryItem(item);
 	}
 	
 	@PutMapping()
-	public InventoryItem updateInventoryItem(@RequestBody InventoryItem item)
+	public InventoryItem updateInventoryItem(@RequestBody ProductRequest item)
 	{
 		return inventorySer.updateInventory(item);
 	}
 	
 	@PutMapping("/{id}")
-	public InventoryItem updateInventoryItem(@PathVariable UUID id, @RequestBody InventoryItem item)
+	public InventoryItem updateInventoryItem(@PathVariable UUID id, @RequestBody ProductRequest item)
 	{
 		return inventorySer.updateInventoryItem(id, item);
 	}
@@ -73,7 +73,7 @@ public class InventoryItemController
 	}
 	
 	@DeleteMapping()
-	public InventoryItem deleteInventoryItem(@RequestBody InventoryItem item)
+	public InventoryItem deleteInventoryItem(@RequestBody ProductRequest item)
 	{
 		return inventorySer.deleteInventory(item);
 	}

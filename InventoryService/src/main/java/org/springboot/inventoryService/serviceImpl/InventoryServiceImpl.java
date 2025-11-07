@@ -3,8 +3,13 @@ package org.springboot.inventoryService.serviceImpl;
 import java.util.List;
 import java.util.UUID;
 
+import org.springboot.inventoryService.dto.ProductRequest;
 import org.springboot.inventoryService.model.InventoryItem;
+import org.springboot.inventoryService.model.Supplier;
+import org.springboot.inventoryService.model.Warehouse;
 import org.springboot.inventoryService.repo.InventoryRepository;
+import org.springboot.inventoryService.repo.SupplierRepository;
+import org.springboot.inventoryService.repo.WarehouseRepository;
 import org.springboot.inventoryService.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +19,13 @@ public class InventoryServiceImpl implements InventoryService
 {
 	@Autowired
 	private InventoryRepository inventoryRepo;
+	
+	@Autowired
+	private SupplierRepository supplierRepo;
+	
+	@Autowired
+	private WarehouseRepository warehouseRepo;
 
-	@Override
-	public String addInventoryItem(InventoryItem item) 
-	{
-		inventoryRepo.save(item);
-		return "Inventory Item added.";
-		
-	}
 
 	@Override
 	public InventoryItem getInventoryItemBySKUId(String sku_id) 
@@ -36,7 +40,7 @@ public class InventoryServiceImpl implements InventoryService
 	}
 
 	@Override
-	public InventoryItem updateInventoryItem(UUID id, InventoryItem item) 
+	public InventoryItem updateInventoryItem(UUID id, ProductRequest item) 
 	{
 		return inventoryRepo.findById(id).map(item1->
 		{
@@ -58,9 +62,31 @@ public class InventoryServiceImpl implements InventoryService
 	}
 
 	@Override
-	public InventoryItem updateInventory(InventoryItem item) 
+	public InventoryItem updateInventory(ProductRequest product) 
 	{
+		Supplier supplier = supplierRepo.findById(product.getSupplier_id())
+				.orElseThrow(()-> new RuntimeException("No Such Supplier Found!."));
+		
+		Warehouse warehouse = warehouseRepo.findById(product.getWarehouse_id())
+				.orElseThrow(()-> new RuntimeException("No Such Warehouse Found!."));
+		
+		InventoryItem item  = new InventoryItem();
+		item.setCategory(product.getCategory());
+		item.setCost_prize(product.getCost_prize());
+		item.setCreated_at(product.getCreated_at());
+		item.setDescription(product.getDescription());
+		item.setName(product.getName());
+		item.setQuantity_in_stock(product.getQuantity_in_stock());
+		item.setReorder_level(product.getReorder_level());
+		item.setSelling_prize(product.getSelling_prize());
+		item.setUnit_of_measure(product.getUnit_of_measure());
+		item.setStatus(product.getStatus());
+		item.setUpdated_at(product.getUpdated_at());
+		item.setSupplier(supplier);
+		item.setWarehouse(warehouse);
+		
 		inventoryRepo.save(item);
+		//inventoryRepo.save(item);
 		return item;
 	}
 
@@ -73,8 +99,29 @@ public class InventoryServiceImpl implements InventoryService
 	}
 
 	@Override
-	public InventoryItem deleteInventory(InventoryItem item) 
+	public InventoryItem deleteInventory(ProductRequest product) 
 	{
+		Supplier supplier = supplierRepo.findById(product.getSupplier_id())
+				.orElseThrow(()-> new RuntimeException("No Such Supplier Found!."));
+		
+		Warehouse warehouse = warehouseRepo.findById(product.getWarehouse_id())
+				.orElseThrow(()-> new RuntimeException("No Such Warehouse Found!."));
+		
+		InventoryItem item  = new InventoryItem();
+		item.setCategory(product.getCategory());
+		item.setCost_prize(product.getCost_prize());
+		item.setCreated_at(product.getCreated_at());
+		item.setDescription(product.getDescription());
+		item.setName(product.getName());
+		item.setQuantity_in_stock(product.getQuantity_in_stock());
+		item.setReorder_level(product.getReorder_level());
+		item.setSelling_prize(product.getSelling_prize());
+		item.setUnit_of_measure(product.getUnit_of_measure());
+		item.setStatus(product.getStatus());
+		item.setUpdated_at(product.getUpdated_at());
+		item.setSupplier(supplier);
+		item.setWarehouse(warehouse);
+		
 		inventoryRepo.delete(item);
 		return item;
 	}
@@ -89,6 +136,35 @@ public class InventoryServiceImpl implements InventoryService
 	public List<InventoryItem> getAllInventory() 
 	{
 		return inventoryRepo.findAll();
+	}
+
+	@Override
+	public String addProductInventoryItem(ProductRequest product) 
+	{
+		Supplier supplier = supplierRepo.findById(product.getSupplier_id())
+				.orElseThrow(()-> new RuntimeException("No Such Supplier Found!."));
+		
+		Warehouse warehouse = warehouseRepo.findById(product.getWarehouse_id())
+				.orElseThrow(()-> new RuntimeException("No Such Warehouse Found!."));
+		
+		InventoryItem item  = new InventoryItem();
+		item.setCategory(product.getCategory());
+		item.setCost_prize(product.getCost_prize());
+		item.setCreated_at(product.getCreated_at());
+		item.setDescription(product.getDescription());
+		item.setName(product.getName());
+		item.setQuantity_in_stock(product.getQuantity_in_stock());
+		item.setReorder_level(product.getReorder_level());
+		item.setSelling_prize(product.getSelling_prize());
+		item.setUnit_of_measure(product.getUnit_of_measure());
+		item.setStatus(product.getStatus());
+		item.setUpdated_at(product.getUpdated_at());
+		item.setSupplier(supplier);
+		item.setWarehouse(warehouse);
+		
+		inventoryRepo.save(item);
+		
+		return "Product Inventory Successfully Added.";
 	}
 	
 
