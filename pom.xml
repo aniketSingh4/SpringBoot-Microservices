@@ -11,5 +11,6 @@
   	<module>CustomerServices</module>
   	<module>ProductServices</module>
   	<module>InventoryService</module>
+  	<module>NotificationServices</module>
   </modules>
 </project>
