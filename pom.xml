@@ -12,5 +12,6 @@
   	<module>ProductServices</module>
   	<module>InventoryService</module>
   	<module>NotificationServices</module>
+  	<module>amqp</module>
   </modules>
 </project>
