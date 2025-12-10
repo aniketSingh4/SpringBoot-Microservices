@@ -1,6 +1,7 @@
 package org.springboot.orderService.controller;
 
 
+import org.springboot.orderService.dto.OrderNotification;
 import org.springboot.orderService.model.Order;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,5 +30,14 @@ public class OrderController
     {
         rabbitTemplate.convertAndSend(exchange, routingKey, order);
         return ResponseEntity.ok("✅ Order sent to RabbitMQ: " + order.getOrderId());
+    }
+    
+    @PostMapping("/notifications")
+    public OrderNotification sendNotification()
+    {
+    	OrderNotification notification = new OrderNotification();
+    	rabbitTemplate.convertAndSend(exchange, routingKey, notification);
+    	return notification;
+    	
     }
 }
