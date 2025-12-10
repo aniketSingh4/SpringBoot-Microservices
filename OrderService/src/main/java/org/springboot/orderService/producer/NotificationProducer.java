@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class NotificationProducer 
 {
-	@Value("${rabbitmq.exchange}")
+	@Value("${rabbitmq.exchange.name}")
     private String exchange;
 
-    @Value("${rabbitmq.routingkey}")
+    @Value("${rabbitmq.routing.key}")
     private String routingKey;
     
 	private RabbitTemplate rabbitTemplate;
