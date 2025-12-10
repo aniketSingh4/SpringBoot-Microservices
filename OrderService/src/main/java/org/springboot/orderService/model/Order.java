@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 public class Order implements Serializable 
 {
-    private String orderId;
+	private static final long serialVersionUID = 1L;
+	
+	private String orderId;
     private String itemName;
     private int quantity;
 
